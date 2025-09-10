@@ -132,9 +132,9 @@ class ExampleScenario(ScenarioTemplate):
             return False
 
     def _update_rerun_visualization(self):
-        rr.log(f"sensors/force_normal", rr.Scalar(self.sensorFrameData[1]))
-        rr.log(f"sensors/force_tangential", rr.Scalar(self.sensorFrameData[2]))
-        rr.log(f"sensors/proximity", rr.Scalar(self.sensorFrameData[0]))
+        rr.log(f"sensors/force_normal", rr.Scalars(self.sensorFrameData[1]))
+        rr.log(f"sensors/force_tangential", rr.Scalars(self.sensorFrameData[2]))
+        rr.log(f"sensors/proximity", rr.Scalars(self.sensorFrameData[0]))
 
     def _set_up_sensor_and_scene(self):
         robot_prim_path = "/World/Tip"
