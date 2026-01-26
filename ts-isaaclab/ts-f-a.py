@@ -11,9 +11,10 @@
 """Launch Isaac Sim Simulator first."""
 
 import argparse
-import os
+import os, sys
 
 from isaaclab.app import AppLauncher
+import omni.kit.app as APP
 
 # add argparse arguments
 parser = argparse.ArgumentParser(description="Tutorial on adding sensors on a robot.")
@@ -39,11 +40,30 @@ from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdF
 from isaaclab.sim.schemas.schemas_cfg import RigidBodyPropertiesCfg
 from isaaclab.utils import configclass
 
-from ts_sensor_lib.register_sensor import TSsensor
 
 ##
 # Pre-defined configs
 ##
+
+def load_register_sensor():
+    try:
+        version = APP.get_app().get_app_version()
+        print("Isaac Sim Version:", version)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if version == "4.5.0":
+            pass
+        elif version == "5.0.0":
+            pass
+        else:
+            print("TaShan sensor not supported on version")
+
+        ts_lib_path = os.path.join(current_dir, "ts_sensor_lib", "isaacsim-"+ version)
+        if ts_lib_path not in sys.path:
+            sys.path.insert(0, ts_lib_path)
+
+    except Exception as e:
+        print(f"Failed to initialize TS sensor callback: {e}")
+        return False
 
 @configclass
 class SensorsSceneCfg(InteractiveSceneCfg):
@@ -93,6 +113,8 @@ class SensorsSceneCfg(InteractiveSceneCfg):
 
 def run_simulator(sim: sim_utils.SimulationContext, scene: InteractiveScene, origins: torch.Tensor):
     """Run the simulator."""
+    from register_sensor import TSsensor
+
     # Define simulation stepping
     cube_object = scene["cube"]
     sim_dt = sim.get_physics_dt()
@@ -132,6 +154,7 @@ def run_simulator(sim: sim_utils.SimulationContext, scene: InteractiveScene, ori
 
 def main():
     """Main function."""
+    load_register_sensor()
 
     # Initialize the simulation context
     sim_cfg = sim_utils.SimulationCfg(dt=0.005, device=args_cli.device)
