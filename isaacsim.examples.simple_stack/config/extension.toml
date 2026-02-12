@@ -1,0 +1,27 @@
+[core]
+reloadable = true
+order = 0
+
+[package]
+version = "1.0.0"
+category = "Manipulation"
+title = "Simple Stack with Tashan Sensors"
+description = "Example showing how to stack two cubes using Franka robot equipped with Tashan tactile sensors"
+authors = ["NVIDIA", "Tashan"]
+repository = ""
+keywords = ["manipulation", "franka", "stacking", "tactile", "sensors", "tashan"]
+changelog = "docs/CHANGELOG.md"
+readme = "docs/README.md"
+preview_image = "data/preview.png"
+icon = "data/icon.png"
+
+[dependencies]
+"omni.kit.uiapp" = {}
+"isaacsim.gui.components" = {}
+"isaacsim.core.api" = {}
+"isaacsim.examples.browser" = {}
+"isaacsim.examples.interactive" = {}
+"ts.sensor.tactile" = {}  # Dependency on Tashan sensor extension
+
+[[python.module]]
+name = "simple_stack_extension_python"

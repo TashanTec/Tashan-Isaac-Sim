@@ -65,6 +65,19 @@ Before using the TS TACTILE extension, we recommend familiarizing yourself with 
 
     - STOP: Click to pause simulation and generate a time-series plot of sensor tactile data to verify model accuracy and stability
 
+3. Run the Simple Stack Example:
+    ```bash
+    cd <isaacsim>
+    ./isaac-sim.sh --ext-folder <your_workspace>/Tashan-Isaac-Sim/ --enable isaacsim.examples.simple_stack
+    ```
+
+    This example demonstrates:
+    - Franka robot with Tashan sensors on gripper fingers
+    - Cube stacking task with tactile feedback
+    - Real-time Rerun visualization of 11-channel sensor data from both fingers
+
+    See the [Simple Stack README](isaacsim.examples.simple_stack/docs/README.md) for detailed usage instructions.
+
 
 ## Application Scenarios & Examples
 1. Tactile Perception Research: Researchers can develop tactile perception algorithms for signal processing, feature extraction, and object recognition
@@ -72,6 +85,12 @@ Before using the TS TACTILE extension, we recommend familiarizing yourself with 
 2. Robotic Manipulation Simulation: Simulate dexterous hand tactile perception and manipulation processes to develop and optimize robotic operation strategies
 
 3. Multimodal Sensory Fusion: Integrate tactile perception with vision, audio, and other sensory modalities for comprehensive environmental perception and object understanding
+
+4. **Simple Stack with Tashan Sensors**: A practical example demonstrating cube stacking using a Franka Emika Panda robot equipped with Tashan TS-F-A tactile sensors on both gripper fingers. This example shows:
+   - Integration of Tashan sensors with standard robotic manipulators
+   - Real-time sensor data visualization using Rerun
+   - Practical grasping and manipulation with tactile feedback
+   - See [Simple Stack Documentation](isaacsim.examples.simple_stack/docs/README.md) for details
 
 
 ## Frequently Asked Questions
