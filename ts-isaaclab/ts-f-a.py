@@ -50,9 +50,7 @@ def load_register_sensor():
         version = APP.get_app().get_app_version()
         print("Isaac Sim Version:", version)
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        if version == "4.5.0":
-            pass
-        elif version == "5.0.0":
+        if version in ("4.5.0", "5.0.0"):
             pass
         else:
             print("TaShan sensor not supported on version")
@@ -105,6 +103,7 @@ class SensorsSceneCfg(InteractiveSceneCfg):
     contact_forces = ContactSensorCfg(
         prim_path="{ENV_REGEX_NS}/Robot/pad_[1-7]",
         update_period=0.0,
+        track_pose=True,
         history_length=6,
         debug_vis=False
     )
@@ -148,7 +147,7 @@ def run_simulator(sim: sim_utils.SimulationContext, scene: InteractiveScene, ori
         print(scene["contact_forces"])
         print("Received max contact force of: ", torch.sum(scene["contact_forces"].data.net_forces_w, dim=1))
 
-        data = TSsensor(scene["contact_forces"].data, scene["robot"].prim_paths)
+        data = TSsensor(scene["contact_forces"])
         print(data)
 
 
